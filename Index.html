@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocaina</title>
+    <link rel="shortcut icon" href="sugarcane.png" type="image/x-icon" />
+    <style>
+        * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #1c1c1e !important;
+        font-family: "Helvetica Neue", sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .cover-art-container {
+        position: relative;
+        margin-bottom: 30px;
+      }
+      img#cover-art {
+        border-radius: 15px;
+        transition: all 0.5s ease-in-out;
+        object-fit: cover;
+        height: 400px;
+        width: 400px;
+        box-shadow: 0 0 20px 2px rgba(255,255,255,0.2);
+      }
+      .gif {
+        position: absolute;
+        top: 0;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        border-radius: 10px;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+      }
+      button {
+        background-color: transparent;
+        border: 2px solid #fff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #fff;
+        color: #1c1c1e;
+        border-color: #1c1c1e;
+      }
+      input[type="range"] {
+        width: 50%;
+        height: 5px;
+        background-color: #fff;
+        outline: none;
+        -webkit-appearance: none;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #1c1c1e;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover-art-container">
+            <img class="gif" src="cocaina.gif">
+            <img id="cover-art" src="cocaina.png">
+        </div>
+        <audio id="audio" src="cocaina.mp3" loop></audio>
+        <div class="controls">
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+            <button id="mute">Mute</button>
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+            </div>
+            </div>
+            <script>
+                const audio = document.getElementById("audio");
+const playBtn = document.getElementById("play");
+const pauseBtn = document.getElementById("pause");
+const muteBtn = document.getElementById("mute");
+const volume = document.getElementById("volume");
+const coverArt = document.getElementById("cover-art");
+const gif = document.getElementsByClassName("gif")[0];
+
+coverArt.style.display = "block";
+gif.style.display = "block";
+
+playBtn.addEventListener("click", function() {
+  audio.play();
+  coverArt.style.display = "block";
+  gif.style.display = "block";
+  gif.style.opacity = 1;
+});
+
+pauseBtn.addEventListener("click", function() {
+  audio.pause();
+  gif.style.opacity = 0;
+  coverArt.style.display = "block";
+});
+
+audio.addEventListener("ended", function() {
+  if (!audio.loop) {
+    gif.style.opacity = 0;
+    coverArt.style.display = "block";
+  }
+});
+
+muteBtn.addEventListener("click", function() {
+  audio.muted = !audio.muted;
+});
+volume.addEventListener("input", function() {
+  audio.volume = volume.value;
+});
+
+</script>
+</body>
+</html>            
